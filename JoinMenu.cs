@@ -11,7 +11,7 @@ namespace Gazette
 			InitializeComponent();
 		}
 
-		private async void JoinServer_Click(object sender, EventArgs e)
+		private void JoinServer_Click(object sender, EventArgs e)
 		{
 			if (!IPAddress.TryParse(IPTextBox.Text, out IPAddress address))
 			{
@@ -31,7 +31,7 @@ namespace Gazette
 				return;
 			}
 			
-			await (Program.forms[Gazette.Menu.ChatMenu] as ChatMenu).ConnectAsync(new IPEndPoint(IPAddress.Loopback, port), NameTextBox.Text);
+			(Program.forms[Gazette.Menu.ChatMenu] as ChatMenu).Connect(new IPEndPoint(IPAddress.Loopback, port), NameTextBox.Text, PasswordTextBox.Text);
 			Program.SwitchMenu(Gazette.Menu.ChatMenu);
 		}
 

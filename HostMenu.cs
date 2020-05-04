@@ -56,7 +56,7 @@ namespace Gazette
 		#region Server Connection
 		async Task<bool> Connect()
 		{
-			if(myConnection?.State == ConnectionState.Open)
+			if (myConnection?.State == ConnectionState.Open)
 			{
 				Log("Server already started, close previous connections first.");
 				return false;
@@ -91,7 +91,7 @@ namespace Gazette
 
 				Log("Connected to database.");
 
-				server = new NetworkServer(new IPEndPoint(IPAddress.Loopback, port));
+				server = new NetworkServer(new IPEndPoint(IPAddress.Loopback, port), myConnection);
 				server.OutputLog += (s) => BeginInvoke((Action)(() => Log(s, false)));
 				server.ClientsChanged += (s) => BeginInvoke((Action)(() => { UserBox.Items.Clear(); UserBox.Items.AddRange(s); }));
 
@@ -119,7 +119,7 @@ namespace Gazette
 			PortTextBox.Enabled = true;
 		}
 		#endregion
-		
+
 		void Log(string message, bool displayTime = true)
 		{
 			if (displayTime)
@@ -137,6 +137,15 @@ namespace Gazette
 			PortTextBox.Text = serverPort;
 
 			HostButton_Click(null, null);
+		}
+
+		private void LogBox_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			int index = LogBox.IndexFromPoint(e.Location);
+			if (index != ListBox.NoMatches)
+			{
+				MessageBox.Show(LogBox.Items[index].ToString());
+			}
 		}
 	}
 }

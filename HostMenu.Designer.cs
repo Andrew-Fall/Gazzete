@@ -31,12 +31,12 @@
 			this.HostButton = new System.Windows.Forms.Button();
 			this.ReturnButton = new System.Windows.Forms.Button();
 			this.LogBox = new System.Windows.Forms.ListBox();
+			this.UserBox = new System.Windows.Forms.ListBox();
 			this.PortTextBox = new Gazette.WatermarkedRichTextBox();
 			this.DatabasePasswordTextBox = new Gazette.WatermarkedRichTextBox();
 			this.DatabaseUserIDTextBox = new Gazette.WatermarkedRichTextBox();
 			this.DatabaseNameTextBox = new Gazette.WatermarkedRichTextBox();
 			this.DatabaseIPTextBox = new Gazette.WatermarkedRichTextBox();
-			this.UserBox = new System.Windows.Forms.ListBox();
 			this.SuspendLayout();
 			// 
 			// HostButton
@@ -71,6 +71,17 @@
 			this.LogBox.Name = "LogBox";
 			this.LogBox.Size = new System.Drawing.Size(282, 212);
 			this.LogBox.TabIndex = 10;
+			this.LogBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LogBox_MouseDoubleClick);
+			// 
+			// UserBox
+			// 
+			this.UserBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.UserBox.FormattingEnabled = true;
+			this.UserBox.Location = new System.Drawing.Point(462, 13);
+			this.UserBox.Name = "UserBox";
+			this.UserBox.Size = new System.Drawing.Size(90, 212);
+			this.UserBox.TabIndex = 16;
 			// 
 			// PortTextBox
 			// 
@@ -131,16 +142,6 @@
 			this.DatabaseIPTextBox.Text = "Database IP";
 			this.DatabaseIPTextBox.TextWrapper = "";
 			this.DatabaseIPTextBox.WatermarkedText = "Database IP";
-			// 
-			// UserBox
-			// 
-			this.UserBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.UserBox.FormattingEnabled = true;
-			this.UserBox.Location = new System.Drawing.Point(462, 13);
-			this.UserBox.Name = "UserBox";
-			this.UserBox.Size = new System.Drawing.Size(90, 212);
-			this.UserBox.TabIndex = 16;
 			// 
 			// HostMenu
 			// 

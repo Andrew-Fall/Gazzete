@@ -1,7 +1,9 @@
 ﻿using Gazette.NetworkMessages;
+using System;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,13 +24,25 @@ namespace Gazette.Network
 
 		public async Task<NetworkMessage> GetMessageAsync(CancellationToken token)
 		{
-			return await Task.Run(() => binaryFormatter.Deserialize(tcpClient.GetStream()), token) as NetworkMessage;
+			try
+			{
+				return await Task.Run(() => binaryFormatter.Deserialize(tcpClient.GetStream()), token) as NetworkMessage;
+			}
+			catch (Exception e)
+			{
+				if (e is System.IO.IOException || e is InvalidOperationException)
+					return new DisconnectMessage() { Name = Name };
+				throw;
+			}
 		}
 
-		public async Task SendMessageAsync(NetworkMessage message, CancellationToken token)
+		public void SendMessage(NetworkMessage message)
 		{
-			byte[] messageBytes = message.Serialize();
-			await tcpClient.GetStream().WriteAsync(messageBytes, 0, messageBytes.Length);
+			Task.Run(() =>
+			{
+				byte[] messageBytes = message.Serialize();
+				tcpClient.GetStream().WriteAsync(messageBytes, 0, messageBytes.Length);
+			});
 		}
 
 		public bool IsConnected()

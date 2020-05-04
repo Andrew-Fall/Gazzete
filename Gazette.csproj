@@ -65,6 +65,7 @@
     <Compile Include="ChatMenu.Designer.cs">
       <DependentUpon>ChatMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\CommandBuilder.cs" />
     <Compile Include="HostMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,13 +86,16 @@
     </Compile>
     <Compile Include="NetworkMessages\ChatMessage.cs" />
     <Compile Include="NetworkMessages\DisconnectMessage.cs" />
+    <Compile Include="NetworkMessages\ChatHistoryMesssage.cs" />
     <Compile Include="NetworkMessages\JoinMessage.cs" />
     <Compile Include="NetworkMessages\NetworkMessage.cs" />
+    <Compile Include="NetworkMessages\RejectMessage.cs" />
     <Compile Include="NetworkMessages\UsersMessage.cs" />
     <Compile Include="Network\NetworkClient.cs" />
     <Compile Include="Network\NetworkServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Database\Sanitizer.cs" />
     <Compile Include="WatermarkedRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

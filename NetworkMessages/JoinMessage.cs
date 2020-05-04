@@ -6,5 +6,6 @@ namespace Gazette.NetworkMessages
 	public class JoinMessage : NetworkMessage
 	{
 		public string Name;
+		public string Password;
 	}
 }

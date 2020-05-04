@@ -18,14 +18,14 @@ namespace Gazette
 			InitializeComponent();
 		}
 
-		public async Task ConnectAsync(IPEndPoint address, string userID)
+		public void Connect(IPEndPoint address, string userID, string password)
 		{
 			TcpClient tcpClient = new TcpClient();
 			tcpClient.Connect(address);
 
 			client = new NetworkClient(tcpClient);
 			client.Name = userID;
-			await client.SendMessageAsync(new JoinMessage() { Name = client.Name }, tokenSource.Token);
+			client.SendMessage(new JoinMessage() { Name = client.Name, Password = password });
 			_ = Task.Run(() => ClientLoop(tokenSource.Token));
 			UpdateUsersLog();
 		}
@@ -47,9 +47,9 @@ namespace Gazette
 			}
 		}
 
-		private async void SendButton_Click(object sender, EventArgs e)
+		private void SendButton_Click(object sender, EventArgs e)
 		{
-			await client.SendMessageAsync(new ChatMessage() { Text = ChatBox.Text }, tokenSource.Token);
+			client.SendMessage(new ChatMessage() { Text = ChatBox.Text });
 			ChatBox.Text = "";
 		}
 
