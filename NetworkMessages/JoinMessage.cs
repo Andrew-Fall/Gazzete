@@ -1,11 +1,13 @@
-﻿using System;
+﻿using ProtoBuf;
 
 namespace Gazette.NetworkMessages
 {
-	[Serializable]
-	public class JoinMessage : NetworkMessage
+	[ProtoContract]
+	public class JoinMessage : NetworkMessage, IClientMessage
 	{
+		[ProtoMember(1)]
 		public string Name;
+		[ProtoMember(2)]
 		public string Password;
 	}
 }

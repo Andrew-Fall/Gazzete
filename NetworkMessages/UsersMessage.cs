@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 
 namespace Gazette.NetworkMessages
 {
-	[Serializable]
-	public class UsersMessage : NetworkMessage
+	[ProtoContract]
+	public class UsersMessage : NetworkMessage, IClientMessage
 	{
+		[ProtoMember(1)]
 		public string[] Users;
 	}
 }

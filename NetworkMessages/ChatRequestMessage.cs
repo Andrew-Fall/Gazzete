@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Gazette.NetworkMessages
 {
 	[ProtoContract]
-	public class ChatMessage : NetworkMessage
+	public class ChatRequestMessage : NetworkMessage
 	{
 		[ProtoMember(1)]
-		public string Text;
+		public int index;
 	}
 }
